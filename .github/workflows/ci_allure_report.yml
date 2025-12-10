@@ -8,6 +8,8 @@ on:
 jobs:
   build_and_report:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - name: Checkout code
@@ -30,7 +32,7 @@ jobs:
       if: always()
       id: allure-report
       with:
-        allure_results_folder: target/allure-results # Matches where your Maven test puts files
+        allure_results_folder: allure-results # Matches where your Maven test puts files
         gh_pages: gh-pages
         
     - name: Deploy Allure Report to GitHub Pages

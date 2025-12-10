@@ -1,4 +1,5 @@
 <!DOCTYPE suite SYSTEM "testng.org" >
+
 <suite name="MyOfficeSuite">
     <test name="SeleniumAwesomeQATest">
         <classes>

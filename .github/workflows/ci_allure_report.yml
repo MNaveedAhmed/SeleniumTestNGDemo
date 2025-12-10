@@ -35,6 +35,6 @@ jobs:
       env:
           JAVA_HOME: ""
       with:
-        allure-results: target/allure-results # Your folder in the root directory
-        # We specify where to build the report temporarily before deployment
-        reports-site-path: allure-report-site 
+        allure-results: target/allure-results
+        gh-pages: gh-pages  # Add this
+        gh-pages-dir: allure-report-site  # Change reports-site-path to this

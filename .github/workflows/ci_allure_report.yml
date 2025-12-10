@@ -28,7 +28,7 @@ jobs:
 
     - name: Generate Allure Report and Upload Artifact
       # This action automatically handles the Allure CLI installation and report generation
-      uses: simple-elf/allure-report-action@v1
+      uses: allure-framework/allure-report-action@v2
       if: always()
       id: allure-report
       with:

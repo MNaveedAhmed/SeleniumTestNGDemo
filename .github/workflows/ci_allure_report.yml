@@ -29,13 +29,17 @@ jobs:
 
     # New step using the stable 'andgineer' action
     - name: Generate Allure test report
-      uses: andgineer/allure-report@v3.6 
+      uses: andgineer/allure-report@v3.6
       if: always()
-      id: allure-report-step
       env:
-          JAVA_HOME: ""
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Add this line
+        JAVA_HOME: ""   # Only this is needed
       with:
         allure-results: target/allure-results
-        gh-pages: gh-pages  # Add this
-        gh-pages-dir: allure-report-site  # Change reports-site-path to this
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # This is required for deployment
+        publish_dir: ./gh-pages-dir/builds/tests
+        publish_branch: gh-pages

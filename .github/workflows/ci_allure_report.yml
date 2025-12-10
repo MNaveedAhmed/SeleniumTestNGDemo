@@ -41,6 +41,6 @@ jobs:
       if: always()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}  # This is required for deployment
-      publish_dir: ./gh-pages-dir  # Changed to deploy entire folder
-      keep_files: true  # Preserve previous reports
-      publish_branch: gh-pages
+        publish_dir: ./gh-pages-dir  # Changed to deploy entire folder
+        keep_files: true  # Preserve previous reports
+        publish_branch: gh-pages

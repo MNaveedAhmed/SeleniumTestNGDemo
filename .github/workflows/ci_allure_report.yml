@@ -32,8 +32,10 @@ jobs:
       uses: andgineer/allure-report@v3.6 
       if: always()
       id: allure-report-step
+      env:
+          JAVA_HOME: ""
       with:
-        allure-results: allure-results # Your folder in the root directory
+        allure-results: target/allure-results # Your folder in the root directory
         # We specify where to build the report temporarily before deployment
         reports-site-path: allure-report-site 
 

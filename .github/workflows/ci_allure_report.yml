@@ -3,17 +3,19 @@ name: Maven Build & Allure Report CI
 on:
   push:
     branches:
-      - main # Or whatever your primary development branch is
+      - main 
 
 jobs:
   build_and_report:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-
+      contents: write # Needed for deploying to gh-pages
+      
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # Fetch all history for report history feature
 
     - name: Set up JDK 11
       uses: actions/setup-java@v4
@@ -23,22 +25,22 @@ jobs:
         cache: maven
 
     - name: Run Maven Tests and Generate Allure Results
-      # The 'mvn test' command will use your existing pom.xml setup
       run: mvn clean test
 
-    - name: Generate Allure Report and Upload Artifact
-      # This action automatically handles the Allure CLI installation and report generation
-      uses: allure-framework/allure-report-action@v2
+    # New step using the stable 'andgineer' action
+    - name: Generate Allure test report
+      uses: andgineer/allure-report@v3.6 
       if: always()
-      id: allure-report
+      id: allure-report-step
       with:
-        allure_results_folder: allure-results # Matches where your Maven test puts files
-        gh_pages: gh-pages
-        
+        allure-results: allure-results # Your folder in the root directory
+        # We specify where to build the report temporarily before deployment
+        reports-site-path: allure-report-site 
+
     - name: Deploy Allure Report to GitHub Pages
       if: always()
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages # This must match your GitHub Pages setting in Step 1
-        publish_dir: allure-history
+        publish_branch: gh-pages
+        publish_dir: allure-report-site # Deploy the folder the previous step created

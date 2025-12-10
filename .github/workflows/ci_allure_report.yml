@@ -38,11 +38,3 @@ jobs:
         allure-results: target/allure-results # Your folder in the root directory
         # We specify where to build the report temporarily before deployment
         reports-site-path: allure-report-site 
-
-    - name: Deploy Allure Report to GitHub Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: allure-report-site # Deploy the folder the previous step created

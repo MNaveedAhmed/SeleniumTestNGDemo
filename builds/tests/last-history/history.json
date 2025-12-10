@@ -1,0 +1,1 @@
+{"5b65d8f659872d22f6f8bc25b693558f":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"aa169d49827ce09c","reportUrl":"https://MNaveedAhmed.github.io/SeleniumTestNGDemo/builds/tests/19/index.html#testresult/aa169d49827ce09c","status":"passed","time":{"start":1765402924274,"stop":1765402928276,"duration":4002}}]}}

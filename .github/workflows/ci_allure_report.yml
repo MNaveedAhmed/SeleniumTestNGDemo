@@ -34,6 +34,7 @@ jobs:
       id: allure-report-step
       env:
           JAVA_HOME: ""
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Add this line
       with:
         allure-results: target/allure-results
         gh-pages: gh-pages  # Add this

@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "testng.org" >
+<suite name="MyOfficeSuite">
+    <test name="SeleniumAwesomeQATest">
+        <classes>
+            <!-- Make sure the package name and class name here match your Java file -->
+            <class name="com.office.SimpleSeleniumTest"/>
+        </classes>
+    </test>
+</suite>

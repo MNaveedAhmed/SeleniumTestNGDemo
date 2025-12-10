@@ -1,0 +1,42 @@
+name: Maven Build & Allure Report CI
+
+on:
+  push:
+    branches:
+      - main # Or whatever your primary development branch is
+
+jobs:
+  build_and_report:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Run Maven Tests and Generate Allure Results
+      # The 'mvn test' command will use your existing pom.xml setup
+      run: mvn clean test
+
+    - name: Generate Allure Report and Upload Artifact
+      # This action automatically handles the Allure CLI installation and report generation
+      uses: simple-elf/allure-report-action@v1.12.0
+      if: always()
+      id: allure-report
+      with:
+        allure_results_folder: target/allure-results # Matches where your Maven test puts files
+        gh_pages: gh-pages
+        
+    - name: Deploy Allure Report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages # This must match your GitHub Pages setting in Step 1
+        publish_dir: allure-history

@@ -1,0 +1,30 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.next
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+build directory
+# Allure results specifically if they are in root
+allure-results/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/
+
+# IDEs (IntelliJ, etc.)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS temporary files
+.DS_Store
+*.swp
+*~
+.#*

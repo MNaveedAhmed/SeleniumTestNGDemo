@@ -19,7 +19,7 @@ public class SimpleSeleniumTest
 
     @BeforeSuite
     public void BeforeSuiteMethod (){
-        System.out.println("Before Suite output");
+        System.out.println("Before Suite output: ");
     }
 
     @BeforeClass
